@@ -6,11 +6,10 @@
 		  "<div class=\"vpbox\">",
 		  "    <!-- HEADER -->",
 		  "    <div class=\"vpbox-header\">",
-		  "        <h1><i class=\"vpbox-icon list-icon\"></i>${1:영역 타이틀}</h1>",
-		  "",
+		  "        <i class=\"vpbox-icon list-icon\"></i>",
+		  "        <h1>${1:영역 타이틀}</h1>",
 		  "        <div class=\"vpbox-toolbar\"></div>",
 		  "    </div>",
-		  "",
 		  "    <!-- CONTENT -->",
 		  "    <div class=\"vpbox-container\">",
 		  "        <div class=\"vpbox-content\">",
@@ -61,7 +60,7 @@
 		"description": "고정 높이를 가지는 상/하 div를 생성합니다."
 	  },
 
-	  "JSTL을 포함하는 기본 form을 생성합니다.": {
+	  "JSTL을 포함하는 기본 form 샘플을 생성합니다.": {
 		"prefix": "v-form",
 		"body": [
 		  "<form class=\"vplus-form\" id=\"${1:폼 id}\" name=\"${1:폼 id}\">",
@@ -137,7 +136,7 @@
 		  "    </div>",
 		  "</form>"
 		],
-		"description": "JSTL을 포함하는 기본 form을 생성합니다."
+		"description": "JSTL을 포함하는 기본 form 샘플을 생성합니다."
 	  },
 
 	"우편번호 input 레이아웃": {
