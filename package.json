@@ -1,0 +1,29 @@
+{
+  "name": "vplus-snippets",
+  "displayName": "vplus snippets",
+  "description": "",
+  "version": "0.0.3",
+  "icon": "images/thumbnail.png",
+  "engines": {
+    "vscode": "^1.87.0"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./snippets/snippets.code-snippets"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/html.json"
+      }
+    ]
+  },
+  "publisher": "human-plus",
+  "dependencies": {
+    "pnpm": "^8.15.4"
+  }
+}
