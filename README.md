@@ -1,11 +1,13 @@
-# vPlus
-
-## vplusErp snippets
+# vplusErp snippets
 
 vplusErp 에 사용되는 스니펫 모음입니다.
 
+intellisense에서 사용할 스니펫을 선택하고 `tab`키를 눌러 스니펫에 지정된 값으로 이동, 입력할 수 있습니다.
 
-### HTML
+## Demo
+![htmldemo](images/htmldemo.gif)
+
+## HTML
 |Trigger        |Content                  |
 |:-------------:|-------------------------|
 |`v-vpbox`|기본 vpbox를 생성합니다.|
@@ -25,7 +27,7 @@ vplusErp 에 사용되는 스니펫 모음입니다.
 |`v-rangedate`|range date jstl을 생성합니다.|
 |`v-codefind`|코드파인드 jstl을 생성합니다.|
 
-### Javascript
+## Javascript
 |Trigger        |Content                  |
 |:-------------:|-------------------------|
 |`v-createSheet`|기본 시트 생성 구문을 생성합니다.|

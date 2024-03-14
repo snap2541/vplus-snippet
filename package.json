@@ -2,7 +2,7 @@
   "name": "vplus-snippets",
   "displayName": "vplus snippets",
   "description": "",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "icon": "images/thumbnail.png",
   "engines": {
     "vscode": "^1.87.0"
@@ -25,6 +25,10 @@
         "path": "./snippets/javascript.json"
       }
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/snap2541/vplus-snippet.git"
   },
   "publisher": "human-plus",
   "dependencies": {
