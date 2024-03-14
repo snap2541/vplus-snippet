@@ -1,6 +1,6 @@
 # vplusErp snippets
 
-vplusF/W 에 사용되는 스니펫 모음입니다.
+vplus FrameWork 에 사용되는 스니펫 모음입니다.
 
 intellisense에서 사용할 스니펫을 선택하고 `tab`키를 눌러 스니펫에 지정된 값으로 이동, 입력할 수 있습니다.
 
