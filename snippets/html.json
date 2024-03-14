@@ -1,7 +1,7 @@
 {
 
 	"기본 vpbox를 생성합니다.": {
-		"prefix": "vpbox",
+		"prefix": "v-vpbox",
 		"body": [
 		  "<div class=\"vpbox\">",
 		  "    <!-- HEADER -->",
@@ -20,16 +20,8 @@
 		],
 		"description": "기본 vpbox를 생성합니다."
 	  },
-	  "vpbox2 test": {
-		"prefix": "vpbox2",
-		"body": [
-		  "<div class=\"vpbox2222\">"
-		],
-		"description": "vpbox2 test"
-	  },
-
 	  "고정 높이를 가지는 상/하 vpbox를 생성합니다.": {
-		"prefix": "calAutoRow",
+		"prefix": "v-calAutoRow",
 		"body": [
 		  "<section id=\"contBody\" class=\"autoheight\" style=\"min-height:${1:전체 최소 높이}px;\">",
 		  "    <div class=\"row\" style=\"height:${2:고정 vpbox 높이}px;\">",
@@ -70,7 +62,7 @@
 	  },
 
 	  "JSTL을 포함하는 기본 form을 생성합니다.": {
-		"prefix": "form",
+		"prefix": "v-form",
 		"body": [
 		  "<form class=\"vplus-form\" id=\"${1:폼 id}\" name=\"${1:폼 id}\">",
 		  "    <tag:hidden oid=\"S_FLAG\" value=\"\"/>",
@@ -149,7 +141,7 @@
 	  },
 
 	"우편번호 input 레이아웃": {
-		"prefix": "postcode",
+		"prefix": "v-postcode",
 		"body": [
 		  "<div class=\"d-flex\">",
 		  "    <div class=\"icon-addon codefinder\">",
@@ -165,7 +157,7 @@
 	  },
 
 	  "다이얼로그 ui 레이아웃": {
-		"prefix": "dialog",
+		"prefix": "v-dialog",
 		"body": [
 		  "<div id=\"dialog-${1:다이얼로그 id}\" class=\"hasDialog\" title=\"${2:다이얼로그 제목}\">",
 		  "    <div class=\"dialog-content\">",
@@ -209,7 +201,7 @@
 	  },
 
 	  "input jstl을 생성합니다.": {
-		"prefix": "input",
+		"prefix": "v-input",
 		"body": [
 		  "<tag:input oid=\"${1:아이디}\" ${3:cls=\"클래스\"} ${4:maxbyte=\"${5}\"} ${6:maxlen=\"${7}\"} ${8:mask=\"${9|bizNo,juminNo,ymd,hhmm,dec,percent|}\"} ${10:custom=\"${11|readonly,disabled,data-max-value='999',data-min-value='-999',data-allow-minus='false'|}\"} ${12:startAddon=\"${13:전위 추가 텍스트}\"} ${14:endAddon=\"${15:후위 추가 텍스트}\"} />"
 		],
@@ -217,22 +209,22 @@
 	  },
 
 	  "간단한 input jstl을 생성합니다.": {
-		"prefix": "inputsimple",
+		"prefix": "v-inputsimple",
 		"body": [
 		  "<tag:input oid=\"${1:아이디}\" ${2:value=\"${3:기본값}\"}/>"
 		],
-		"description": "input jstl을 생성합니다."
+		"description": "필수 속성만을 가지는 input jstl을 생성합니다"
 	  },
 
 	  "radio jstl을 생성합니다.": {
-		"prefix": "radio",
+		"prefix": "v-radio",
 		"body": [
 		  "<tag:radio oid=\"${1}1|${1}2|${1}3\" name=\"${1:라디오 name}\" optText=\"${2:옵션 텍스트}1|${2}2|${2}3\" optValue=\"${3:옵션 값}1|${3}2|${3}3\" value=\"${3}1\"/>"
 		],
 		"description": "radio jstl을 생성합니다."
 	  },
 	  "공통코드 radio jstl을 생성합니다.": {
-		"prefix": "radioComCode",
+		"prefix": "v-radioComCode",
 		"body": [
 		  "<tag:radio oid=\"${1:라디오 name}\" grpCode=\"${2:공통코드}\"/>"
 		],
@@ -240,14 +232,14 @@
 	  },
 
 	  "checkbox jstl을 생성합니다.": {
-		"prefix": "checkbox",
+		"prefix": "v-checkbox",
 		"body": [
 		  "<tag:check oid=\"${1:체크박스 id}1|${1}2|${1}3\" optText=\"${2:옵션 텍스트}1|${2}2|${2}3\" optValue=\"${3:옵션 값}1|${3}2|${3}3\" value=\"${3}1\"/>"
 		],
 		"description": "checkbox jstl을 생성합니다."
 	  },
 	  "공통코드 checkbox jstl을 생성합니다.": {
-		"prefix": "checkboxComCode",
+		"prefix": "v-checkboxComCode",
 		"body": [
 		  "<tag:check oid=\"${1:체크박스 id}\" grpCode=\"${2:공통코드}\"/>"
 		],
@@ -255,14 +247,14 @@
 	  },
 
 	  "selectbox jstl을 생성합니다.": {
-		"prefix": "selectbox",
+		"prefix": "v-selectbox",
 		"body": [
 		  "<tag:select oid=\"${1:셀렉트박스 id}\" optText=\"${2:옵션 텍스트}1|${2}2|${2}3\" optValue=\"${3:옵션 값}1|${3}2|${3}3\" firstRow=\"${4|E,S,A,N,L|}\" ${5:cls=\"w-auto\"}/>"
 		],
 		"description": "selectbox jstl을 생성합니다."
 	  },
 	  "공통코드 selectbox jstl을 생성합니다.": {
-		"prefix": "selectComCode",
+		"prefix": "v-selectComCode",
 		"body": [
 		  "<tag:select oid=\"${1:셀렉트박스 id}\" grpCode=\"${2:공통코드}\" ${3:workType=\"$4\"} ${5:exField=\"$6\"} firstRow=\"${7|E,S,A,N,L|}\" ${8:cls=\"w-auto\"}/>"
 		],
@@ -270,7 +262,7 @@
 	  },
 
 	  "date jstl을 생성합니다.": {
-		"prefix": "date",
+		"prefix": "v-date",
 		"body": [
 		  "<tag:date oid=\"${1:날짜 id}\" ${2:mask=\"${3|y,ym,ymd|}\"} ${4:value=\"${5|today,+y,-y,+m6,-m6,+w,-w,+ds,+de|}\"} />"
 		],
@@ -278,7 +270,7 @@
 	  },
 
 	  "range date jstl을 생성합니다.": {
-		"prefix": "rangedate",
+		"prefix": "v-rangedate",
 		"body": [
 		  "<tag:rangedate fromId=\"${1:시작날짜 id}\" ${2:fromValue=\"${3|today,+y,-y,+m6,-m6,+w,-w,+ds,+de|}\"} toId=\"${4:끝 id}\" ${5:toValue=\"${6|today,+y,-y,+m6,-m6,+w,-w,+ds,+de|}\"}  ${7:mask=\"${8|y,ym,ymd|}\"} ${9:delim=\"${10|/,~,-|}\"} />"
 		],
@@ -287,7 +279,7 @@
 
 
 	  "코드파인드 jstl을 생성합니다.": {
-		"prefix": "codefind",
+		"prefix": "v-codefind",
 		"body": [
 		  "<tag:codefind cdId=\"${1:코드 id}\" nmId=\"${2:명칭 id}\" btnId=\"btn_$1\" cdfWidth=\"240\" cdWidth=\"80\" ${3:cls=\"required\" msg=\"$4\"} ${5:nmWidth=\"0\"}/>"
 		],

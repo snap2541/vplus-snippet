@@ -1,0 +1,334 @@
+{
+    "기본 시트 생성 구문을 생성합니다.": {
+        "prefix": "v-createSheet",
+        "body": [
+            "/*---------------------------------------------",
+            "-- ● 시트생성",
+            "---------------------------------------------*/",
+            "createSheet$1();",
+
+            "/*---------------------------------------------",
+            "-- ● SHEET1 ${2:시트 이름}",
+            "---------------------------------------------*/",
+            "function createSheet$1() {",
+            "    let initdata = {};",
+            "    initdata.Cfg = { CanEdit: \"${EDIT_YN}\" };",
+
+            "    initdata.Cols = [",
+            "         { Name:\"SEQ\",     Extend:ibSeq,                                                                                   Header:\"순번\" }",
+            "        ,{ Name:\"WRK_TP\",  Extend:ibStatus,                                                                                Header:\"상태\" }",
+            "        ,{ Name:\"CHK_DEL\", Extend:ibDelCheck,                                                                              Header:\"삭제\" }",
+			"        ,{ Name:\"${2:컬럼명}\",  Type:\"${3:컬럼 타입}\", Align:\"left\", Width:100, CanEdit:1, Visible:1, Required:0, Header:\"${4:헤더}\" }",
+            "    ];",
+
+            "    // 초기 이벤트 설정",
+            "    initdata.Events = {",
+            "        /*---------------------------------------------",
+            "        -- ○ [조회 후 이벤트]",
+            "        ---------------------------------------------*/",
+            "        onSearchFinish: function(evtParam) {",
+            "        },",
+            "        /*---------------------------------------------",
+            "        -- ○ [저장 성공 후 이벤트]",
+            "        ---------------------------------------------*/",
+            "        onAfterSaveSuccess: function(evtParam) {",
+            "        },",
+            "    };",
+
+            "    IBSheet.create({",
+            "        id: \"ibSheet$1\",    // 시트 객체 ID",
+            "        el: \"grid-$1\",      // 시트를 생성할 DIV객체 ID",
+            "        options: initdata, // 초기화 구문 변수",
+            "    });",
+            "}"
+        ],
+        "description": "기본 시트 생성 구문을 생성합니다."
+    },
+
+	"행 이동 전 변경된 내용이 있으면 알림창을 띄웁니다.": {
+		"prefix": "v-onBeforeRowChange",
+		"body": [
+		  "/*---------------------------------------------",
+		  "-- ○ [행 이동 전 이벤트]",
+		  "---------------------------------------------*/",
+		  "onBeforeRowChange: function(evtParam) {",
+		  "    // 행 위치 변경 시 CRUD에 대한 처리",
+		  "    if (gfnIbHandleBeforeRowChange(evtParam, [\"${1:폼 또는 시트 id}\"])) { return true; }",
+		  "},"
+		],
+		"description": "행 이동 전 변경된 내용이 있으면 알림창을 띄웁니다."
+	  },
+
+	"행 이동 후 이전 행의 변경된 내용을 조회 값으로 되돌립니다.": {
+		"prefix": "v-onRowChange",
+		"body": [
+		  "/*---------------------------------------------",
+		  "-- ○ [행 이동 후 이벤트]",
+		  "---------------------------------------------*/",
+		  "onRowChange: function(evtParam) {",
+		  "    // ibSheet용 C,U,D인 이전 행에 대한 처리",
+		  "    gfnIbHandleOldRow(evtParam);",
+		  "",
+		  "    // filter Row에 대한 이벤트 처리",
+		  "    if (!gfnIbFilterFocus(evtParam, [\"${1:폼 또는 시트 id}\"])) { return };",
+		  "},"
+		],
+		"description": "행 이동 후 이전 행의 변경된 내용을 조회 값으로 되돌립니다."
+	  },
+
+	  "그리드에서 팝업 클릭 코드파인더를 생성합니다.": {
+		"prefix": "v-onButtonClick",
+		"body": [
+		  "/*---------------------------------------------",
+		  "-- ○ [팝업 클릭]",
+		  "---------------------------------------------*/",
+		  "onButtonClick: function(evtParam) {",
+		  "    if (evtParam.col == \"${1:컬럼명}\") {",
+		  "        /*---------------------------------------------",
+		  "        -- codeFinder > $2",
+		  "        ---------------------------------------------*/",
+		  "        createCodeFinder([",
+		  "            { bindId: evtParam.sheet, type: \"Grid\", module: \"${3:모듈(CO)}\", moduleDiv: \"${4:xml 구분자(DEPT_CD)}\", id: \"cfd_${1:팝업 id}\", title: \"${2:팝업 상단 제목}\", fn:[[\"${6:코드}\",\"${7:코드 HTML el}\"],[\"${8:명칭}\",\"${9:명칭 HTML el}\"]], shtEvtParm: evtParam }",
+		  "        ]);",
+		  "    }",
+		  "},"
+		],
+		"description": "그리드에서 팝업 클릭 코드파인더를 생성합니다."
+	  },
+	  
+	  "엔터 키를 누르면 onButtonClick 이벤트를 호출합니다.": {
+		"prefix": "v-onKeyUp",
+		"body": [
+		  "/*---------------------------------------------",
+		  "-- ○ [키업]+팝업",
+		  "---------------------------------------------*/",
+		  "onKeyUp: function(evtParam) {",
+		  "    if (evtParam.key == 13 && [\"${1:컬럼명}\"].includes(evtParam.sheet.getFocusedCol())) {",
+		  "        gfnIbCallEvents(evtParam.sheet, evtParam, \"onButtonClick\");",
+		  "    }",
+		  "},"
+		],
+		"description": "엔터 키를 누르면 onButtonClick 이벤트를 호출합니다."
+	  },
+
+	  "폼 input에 주소 API를 바인딩합니다.": {
+		"prefix": "v-formPostCode",
+		"body": [
+		  "createDaumPostCode([",
+		  "    { bindId: '${1:버튼 id}', type: 'Form', postalcode: '${2:우편번호 input id}', addr: '${3:주소 input id}', addrDtl: '${4:상세주소 input id}', addExtraAddr: ${5:true|false} },",
+		  "]);"
+		],
+		"description": "폼 input에 주소 API를 바인딩합니다."
+	  },
+
+	  "그리드 버튼에 주소 API를 바인딩합니다.": {
+		"prefix": "v-gridPostCode",
+		"body": [
+		  "if (evtParam.col == '${1:우편번호 컬럼명}') {",
+		  "    createDaumPostCode([",
+		  "        { bindId: evtParam.sheet, type: 'Grid', postalcode: '${1:우편번호 컬럼명}', addr: '${2:주소 컬럼명}', addrDtl: '${3|상세주소 컬럼명,# + input id|}', shtEvtParm: evtParam },",
+		  "    ]);",
+		  "}"
+		],
+		"description": "그리드 버튼에 주소 API를 바인딩합니다."
+	  },
+
+	  "그리드 조회": {
+		"prefix": "v-getSheet",
+		"body": [
+		  "/*---------------------------------------------",
+		  "-- ● ibSheet$1 : 조회",
+		  "---------------------------------------------*/",
+		  "get_Sheet$1: function() {",
+		  "    let param = { ",
+		  "         url      : '/${2:중메뉴(coa)}/getGrd_${3:메소드 명}'",
+		  "        ,sheet    : 'ibSheet$1'",
+		  "        ,subparam : gfnFormQueryString(document.frmRibbon)",
+		  "        //,block  : : ${5|true,false,{ id: '#grid-1' }|}",
+		  "    };",
+		  "    gfnGetGrdData(param);",
+		  "},"
+		],
+		"description": "그리드 조회"
+	  },
+
+	  "그리드 저장": {
+		"prefix": "v-setSheet",
+		"body": [
+		  "/*---------------------------------------------",
+		  "-- ● ibSheet$1 : 저장",
+		  "---------------------------------------------*/",
+		  "set_Sheet$1: function() {",
+		  "    let param = { ",
+		  "         url      : '/${2:중메뉴(coa)}/setGrd_${3:메소드 명}'",
+		  "        ,sheet    : 'ibSheet$1'",
+		  "        ,subparam : '&P_SIT_CD=' + $('#SIT_CD').val()",
+		  "        //,confirm  : ${4|true,false|}",
+		  "        //,block    : ${5|true,false,{ id: '#grid-1' }|}",
+		  "    };",
+		  "    gfnSetGrdData(param);",
+		  "},"
+		],
+		"description": "그리드 저장"
+	  },
+
+	  "그리드 조회, 저장": {
+		"prefix": "v-ajaxSheet",
+		"body": [
+			"/*---------------------------------------------",
+			"-- ● ibSheet$1 : 조회",
+
+			"---------------------------------------------*/",
+			"get_Sheet$1: function() {",
+			"    let param = { ",
+			"         url      : '/${2:중메뉴(coa)}/getGrd_${3:메소드 명}'",
+			"        ,sheet    : 'ibSheet$1'",
+			"        ,subparam : gfnFormQueryString(document.frmRibbon)",
+			"        //,block  : : ${5|true,false,{ id: '#grid-1' }|}",
+			"    };",
+			"    gfnGetGrdData(param);",
+			"},",
+			"/*---------------------------------------------",
+			"-- ● ibSheet$1 : 저장",
+			"---------------------------------------------*/",
+			"set_Sheet$1: function() {",
+			"    let param = { ",
+			"         url      : '/${2:중메뉴(coa)}/setGrd_${3:메소드 명}'",
+			"        ,sheet    : 'ibSheet$1'",
+			"        ,subparam : '&P_SIT_CD=' + $('#SIT_CD').val()",
+			"        //,confirm  : ${4|true,false|}",
+			"        //,block    : ${5|true,false,{ id: '#grid-1' }|}",
+			"    };",
+			"    gfnSetGrdData(param);",
+			"},"
+		],
+		"description": "그리드 조회, 저장"
+	  },
+
+	  "폼 조회": {
+		"prefix": "v-getForm",
+		"body": [
+		  "/*---------------------------------------------",
+		  "-- ● ${1:폼 id} : ${2:폼 이름} 조회",
+		  "---------------------------------------------*/",
+		  "get_${1/(.)/${1:/upcase}/}: function() {",
+		  "    let param = { ",
+		  "         reqUrl   : '/${3:중메뉴(coa)}/getFrm_${4:메소드 명}'",
+		  "        ,reqParam : gfnFormQueryString(document.frmRibbon)",
+		  "        ,bindForm : '${1:폼 id}'",
+		  "        ,block    : ${5|true,false,{ id: '#box1' }|}",
+		  "    };",
+		  "    gfnGetFrmData(param);",
+		  "},",
+		  "",
+		  "/*---------------------------------------------",
+		  "-- ● ${1:폼 id} : ${2:폼 이름} 조회 콜백",
+		  "---------------------------------------------*/",
+		  "${1:폼 id}_SearchEnd: function(rtnData) {",
+		  "    console.log(rtnData);",
+		  "},"
+		],
+		"description": "폼 조회"
+	  },
+
+	  "폼 저장": {
+		"prefix": "v-setForm",
+		"body": [
+		  "/*---------------------------------------------",
+		  "-- ● ${1:폼 id} : ${2:폼 이름} 저장",
+		  "---------------------------------------------*/",
+		  "set_${1/(.)/${1:/upcase}/}: function() {",
+		  "    let param = { ",
+		  "         reqUrl   : '/${3:중메뉴(coa)}/getFrm_${4:메소드 명}'",
+		  "        ,reqParam : gfnFormQueryString(document.frmRibbon, \"${5|U,D,C|}\")",
+		  "        ,bindForm : '${1:폼 id}'",
+		  "        ,confirm  : ${6|true,false|}",
+		  "        ,block    : ${7|true,false,{ id: '#box1' }|}",
+		  "    };",
+		  "    gfnGetFrmData(param);",
+		  "},",
+		  "/*---------------------------------------------",
+		  "-- ● ${1:폼 id} : ${2:폼 이름} 저장 콜백",
+		  "---------------------------------------------*/",
+		  "${1:폼 id}_SaveEnd: function(rtnData) {",
+		  "    if (rtnData.Result.Code == 0) {",
+		  "    }",
+		  "},"
+		],
+		"description": "폼 저장"
+	  },
+
+	  "조회 전 변경, 필수 항목을 체크합니다.": {
+		"prefix": "v-checkSearch",
+		"body": [
+		  "/*-----------------------",
+		  "-- ● [조회]",
+		  "-----------------------*/",
+		  "search: function() {",
+		  "    // MODIFIED CHECK",
+		  "    ${1|if (checkChangeData() && !confirm(comm_msg.WRN001)) { return; },if (!gfnCheckGridBeforeSearch(['ibSheet1'])) { return; }|}",
+		  "",
+		  "    // REQUIRED CHECK",
+		  "    if (vChk.frmRequired('${2:필수 체크할 폼 id}')) {",
+		  "        //vpPage.get_Sheet1();",
+		  "    }",
+		  "},"
+		],
+		"description": "조회 전 변경, 필수 항목을 체크합니다."
+	  },
+
+	  "그리드에 업로드 팝업을 바인딩합니다.": {
+		"prefix": "v-gridUploadPopup",
+		"body": [
+		  "let param = {",
+		  "    type         : 'Grid',",
+		  "    sheet        : ${1:시트 객체},",
+		  "    callbackFunc : vpCallback.${2:팝업 close 콜백},",
+		  "    atflGrpCode  : ${3:첨부파일 그룹코드},",
+		  "    pkCode       : {",
+		  "        PARM_1: evtParam.row.SITE_CD,",
+		  "        PARM_2: evtParam.row.FILE_SEQ,",
+		  "    },",
+		  "    dextOptions : {",
+		  "        height : 400,",
+		  "        width  : 800,",
+		  "        rule   : '',",
+		  "        ext    : '',",
+		  "        count  : ${4:최대 첨부파일 갯수},",
+		  "    },",
+		  "    auth        : \"\\${EDIT_YN}\" ? true : false,",
+		  "    autoClose   : ${5|true,false|},",
+		  "};",
+		  "addonDextUploader(param);"
+		],
+		"description": "그리드에 업로드 팝업을 바인딩합니다."
+	  },
+
+	  "폼에 업로드 팝업을 바인딩합니다.": {
+		"prefix": "v-formUploadPopup",
+		"body": [
+		  "let param = {",
+		  "    type         : 'Form',",
+		  "    formId       : '${1:폼 id}',",
+		  "    callbackFunc : vpCallback.${2:팝업 close 콜백},",
+		  "    atflGrpCode  : ${3:첨부파일 그룹코드},",
+		  "    pkCode       : {",
+		  "        PARM_1: $('#SITE_CD').val(),",
+		  "        PARM_2: $('#FILE_SEQ').val(),",
+		  "    },",
+		  "    dextOptions : {",
+		  "        height : 400,",
+		  "        width  : 800,",
+		  "        rule   : '',",
+		  "        ext    : '',",
+		  "        count  : ${4:최대 첨부파일 갯수},",
+		  "    },",
+		  "    auth        : \"\\${EDIT_YN}\" ? true : false,",
+		  "    autoClose   : ${5|true,false|},",
+		  "};",
+		  "addonDextUploader(param);"
+		],
+		"description": "폼에 업로드 팝업을 바인딩합니다."
+	  }
+	  
+}
