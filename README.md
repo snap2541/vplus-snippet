@@ -1,6 +1,6 @@
 # vplusErp snippets
 
-vplusErp 에 사용되는 스니펫 모음입니다.
+vplusF/W 에 사용되는 스니펫 모음입니다.
 
 intellisense에서 사용할 스니펫을 선택하고 `tab`키를 눌러 스니펫에 지정된 값으로 이동, 입력할 수 있습니다.
 
@@ -30,7 +30,7 @@ intellisense에서 사용할 스니펫을 선택하고 `tab`키를 눌러 스니
 ## Javascript
 |Trigger        |Content                  |
 |:-------------:|-------------------------|
-|`v-createSheet`|기본 시트 생성 구문을 생성합니다.|
+|`v-createSheet`|기본 ibSheet 생성 구문을 생성합니다.|
 |`v-onBeforeRowChange`|행 이동 전 변경된 내용이 있으면 알림창을 띄웁니다.|
 |`v-onRowChange`|행 이동 후 이전 행의 변경된 내용을 조회 값으로 되돌립니다.|
 |`v-onButtonClick`|그리드에서 팝업 클릭 코드파인더를 생성합니다.|
