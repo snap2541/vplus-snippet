@@ -12,7 +12,7 @@ for fileName in files:
     with open(readmePath, 'a', encoding='utf-8') as readme:
         readme.write(f"\n\n## {fileName}\n")
         readme.write("|Prefix|Description|\n")
-        readme.write("|------|-----------|\n")
+        readme.write("|:------:|-----------|\n")
 
     for item in data.values():
         # print(item);

@@ -8,12 +8,9 @@ intellisense에서 사용할 스니펫을 선택하고 `tab`키를 눌러 스니
 ![htmldemo](images/htmldemo.gif)
 
 
-
-
-
 ## javascript
 |Prefix|Description|
-|------|-----------|
+|:------:|-----------|
 |`v-grd-create`|기본 시트를 생성합니다.|
 |`v-grd-e-bfRowChg`|행 이동 전 변경된 내용이 있으면 알림창을 띄우는 이벤트를 추가합니다.|
 |`v-grd-e-RowChg`|행 이동 후 이전 행의 변경된 내용을 조회 값으로 되돌리는 이벤트를 추가합니다.|
@@ -33,7 +30,7 @@ intellisense에서 사용할 스니펫을 선택하고 `tab`키를 눌러 스니
 
 ## html
 |Prefix|Description|
-|------|-----------|
+|:------:|-----------|
 |`v-ui-vpbox`|기본 vpbox를 생성합니다.|
 |`v-ui-vpbox-calAutoRow`|고정 높이를 가지는 상/하 div를 생성합니다.|
 |`v-ui-form`|JSTL을 포함하는 기본 form을 생성합니다.|
@@ -54,7 +51,7 @@ intellisense에서 사용할 스니펫을 선택하고 `tab`키를 눌러 스니
 
 ## java
 |Prefix|Description|
-|------|-----------|
+|:------:|-----------|
 |`v-contoller-view`|화면이동|
 |`v-contoller-get-Grd`|조회 - 그리드 타입|
 |`v-contoller-get-Frm`|조회 - 폼 타입|
@@ -76,7 +73,7 @@ intellisense에서 사용할 스니펫을 선택하고 `tab`키를 눌러 스니
 
 ## xml
 |Prefix|Description|
-|------|-----------|
+|:------:|-----------|
 |`v-sessin-info`|조회 - 그리드|
 |`v-get-procedure`|조회 - 그리드|
 |`v-get-query`|조회 - 그리드|
