@@ -23,6 +23,14 @@
       {
         "language": "javascript",
         "path": "./snippets/javascript.json"
+      },
+      {
+        "language": "java",
+        "path": "./snippets/java.json"
+      },
+      {
+        "language": "xml",
+        "path": "./snippets/xml.json"
       }
     ]
   },
