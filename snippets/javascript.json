@@ -1,6 +1,6 @@
 {
-    "기본 시트 생성 구문을 생성합니다.": {
-        "prefix": "v-createSheet",
+    "생성-그리드": {
+        "prefix": "v-grd-create",
         "body": [
             "/*---------------------------------------------",
             "-- ● 시트생성",
@@ -8,17 +8,17 @@
             "createSheet$1();",
 
             "/*---------------------------------------------",
-            "-- ● SHEET1 ${2:시트 이름}",
+            "-- ● SHEET$1 ${2:시트 이름}",
             "---------------------------------------------*/",
             "function createSheet$1() {",
             "    let initdata = {};",
             "    initdata.Cfg = { CanEdit: \"${EDIT_YN}\" };",
 
             "    initdata.Cols = [",
-            "         { Name:\"SEQ\",     Extend:ibSeq,                                                                                   Header:\"순번\" }",
-            "        ,{ Name:\"WRK_TP\",  Extend:ibStatus,                                                                                Header:\"상태\" }",
-            "        ,{ Name:\"CHK_DEL\", Extend:ibDelCheck,                                                                              Header:\"삭제\" }",
-			"        ,{ Name:\"${2:컬럼명}\",  Type:\"${3:컬럼 타입}\", Align:\"left\", Width:100, CanEdit:1, Visible:1, Required:0, Header:\"${4:헤더}\" }",
+            "         { Name:\"SEQ\",     Extend:ibSeq,      Header:\"순번\" }",
+            "        ,{ Name:\"WRK_TP\",  Extend:ibStatus,   Header:\"상태\" }",
+            "        ,{ Name:\"CHK_DEL\", Extend:ibDelCheck, Header:\"삭제\" }",
+			"        ,{ Name:\"${3:컬럼명}\", Type:\"${4:컬럼 타입}\", Align:\"left\", Width:100, CanEdit:1, Visible:1, Required:0, Header:\"${5:헤더}\" }",
             "    ];",
 
             "    // 초기 이벤트 설정",
@@ -42,11 +42,11 @@
             "    });",
             "}"
         ],
-        "description": "기본 시트 생성 구문을 생성합니다."
+        "description": "기본 시트를 생성합니다."
     },
 
-	"행 이동 전 변경된 내용이 있으면 알림창을 띄웁니다.": {
-		"prefix": "v-onBeforeRowChange",
+	"행 이동 전-이벤트-그리드": {
+		"prefix": "v-grd-e-bfRowChg",
 		"body": [
 		  "/*---------------------------------------------",
 		  "-- ○ [행 이동 전 이벤트]",
@@ -56,11 +56,11 @@
 		  "    if (gfnIbHandleBeforeRowChange(evtParam, [\"${1:폼 또는 시트 id}\"])) { return true; }",
 		  "},"
 		],
-		"description": "행 이동 전 변경된 내용이 있으면 알림창을 띄웁니다."
+		"description": "행 이동 전 변경된 내용이 있으면 알림창을 띄우는 이벤트를 추가합니다."
 	  },
 
-	"행 이동 후 이전 행의 변경된 내용을 조회 값으로 되돌립니다.": {
-		"prefix": "v-onRowChange",
+	"행 이동 후-이벤트-그리드": {
+		"prefix": "v-grd-e-RowChg",
 		"body": [
 		  "/*---------------------------------------------",
 		  "-- ○ [행 이동 후 이벤트]",
@@ -73,11 +73,11 @@
 		  "    if (!gfnIbFilterFocus(evtParam, [\"${1:폼 또는 시트 id}\"])) { return };",
 		  "},"
 		],
-		"description": "행 이동 후 이전 행의 변경된 내용을 조회 값으로 되돌립니다."
+		"description": "행 이동 후 이전 행의 변경된 내용을 조회 값으로 되돌리는 이벤트를 추가합니다."
 	  },
 
-	  "그리드에서 팝업 클릭 코드파인더를 생성합니다.": {
-		"prefix": "v-onButtonClick",
+	  "코드파인더 생성-이벤트-그리드": {
+		"prefix": "v-grd-e-btnClk",
 		"body": [
 		  "/*---------------------------------------------",
 		  "-- ○ [팝업 클릭]",
@@ -93,11 +93,11 @@
 		  "    }",
 		  "},"
 		],
-		"description": "그리드에서 팝업 클릭 코드파인더를 생성합니다."
+		"description": "지정한 컬럼에 팝업 클릭 코드파인더를 생성하는 이벤트를 추가합니다."
 	  },
 	  
-	  "엔터 키를 누르면 onButtonClick 이벤트를 호출합니다.": {
-		"prefix": "v-onKeyUp",
+	  "키업(이벤트 연동)-이벤트-그리드": {
+		"prefix": "v-grd-e-keyUp",
 		"body": [
 		  "/*---------------------------------------------",
 		  "-- ○ [키업]+팝업",
@@ -108,21 +108,11 @@
 		  "    }",
 		  "},"
 		],
-		"description": "엔터 키를 누르면 onButtonClick 이벤트를 호출합니다."
+		"description": "[onButtonClick-onKeyUp] 바인딩하는 이벤트를 추가합니다."
 	  },
 
-	  "폼 input에 주소 API를 바인딩합니다.": {
-		"prefix": "v-formPostCode",
-		"body": [
-		  "createDaumPostCode([",
-		  "    { bindId: '${1:버튼 id}', type: 'Form', postalcode: '${2:우편번호 input id}', addr: '${3:주소 input id}', addrDtl: '${4:상세주소 input id}', addExtraAddr: ${5:true|false} },",
-		  "]);"
-		],
-		"description": "폼 input에 주소 API를 바인딩합니다."
-	  },
-
-	  "그리드 버튼에 주소 API를 바인딩합니다.": {
-		"prefix": "v-gridPostCode",
+	  "주소 API-함수-그리드": {
+		"prefix": "v-grd-fn-postCode",
 		"body": [
 		  "if (evtParam.col == '${1:우편번호 컬럼명}') {",
 		  "    createDaumPostCode([",
@@ -133,8 +123,107 @@
 		"description": "그리드 버튼에 주소 API를 바인딩합니다."
 	  },
 
-	  "그리드 조회": {
-		"prefix": "v-getSheet",
+	  "첨부파일 팝업-함수-그리드": {
+		"prefix": "v-grd-fn-upload",
+		"body": [
+		  "let param = {",
+		  "    type         : 'Grid',",
+		  "    sheet        : ${1:시트 객체},",
+		  "    callbackFunc : vpCallback.${2:팝업 close 콜백},",
+		  "    atflGrpCode  : ${3:첨부파일 그룹코드},",
+		  "    pkCode       : {",
+		  "        PARM_1: evtParam.row.SITE_CD,",
+		  "        PARM_2: evtParam.row.FILE_SEQ,",
+		  "    },",
+		  "    dextOptions : {",
+		  "        height : 400,",
+		  "        width  : 800,",
+		  "        rule   : '',",
+		  "        ext    : '',",
+		  "        count  : ${4:최대 첨부파일 갯수},",
+		  "    },",
+		  "    auth        : \"\\${EDIT_YN}\" ? true : false,",
+		  "    autoClose   : ${5|true,false|},",
+		  "};",
+		  "addonDextUploader(param);"
+		],
+		"description": "그리드에 첨부파일 팝업을 바인딩합니다."
+	  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+	  "주소 API-함수-폼": {
+		"prefix": "v-frm-fn-postCode",
+		"body": [
+		  "createDaumPostCode([",
+		  "    { bindId: '${1:버튼 id}', type: 'Form', postalcode: '${2:우편번호 input id}', addr: '${3:주소 input id}', addrDtl: '${4:상세주소 input id}', addExtraAddr: ${5:true|false} },",
+		  "]);"
+		],
+		"description": "폼 input에 주소 API를 바인딩합니다."
+	  },
+
+	  "첨부파일 팝업-함수-폼": {
+		"prefix": "v-frm-fn-upload",
+		"body": [
+		  "let param = {",
+		  "    type         : 'Form',",
+		  "    formId       : '${1:폼 id}',",
+		  "    callbackFunc : vpCallback.${2:팝업 close 콜백},",
+		  "    atflGrpCode  : ${3:첨부파일 그룹코드},",
+		  "    pkCode       : {",
+		  "        PARM_1: $('#SITE_CD').val(),",
+		  "        PARM_2: $('#FILE_SEQ').val(),",
+		  "    },",
+		  "    dextOptions : {",
+		  "        height : 400,",
+		  "        width  : 800,",
+		  "        rule   : '',",
+		  "        ext    : '',",
+		  "        count  : ${4:최대 첨부파일 갯수},",
+		  "    },",
+		  "    auth        : \"\\${EDIT_YN}\" ? true : false,",
+		  "    autoClose   : ${5|true,false|},",
+		  "};",
+		  "addonDextUploader(param);"
+		],
+		"description": "폼에 첨부파일 팝업을 바인딩합니다."
+	  },
+
+	  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	  "조회-그리드-AJAX": {
+		"prefix": "v-ajax-get-grd",
 		"body": [
 		  "/*---------------------------------------------",
 		  "-- ● ibSheet$1 : 조회",
@@ -149,11 +238,11 @@
 		  "    gfnGetGrdData(param);",
 		  "},"
 		],
-		"description": "그리드 조회"
+		"description": "그리드 조회 공통함수를 추가합니다."
 	  },
 
-	  "그리드 저장": {
-		"prefix": "v-setSheet",
+	  "저장-그리드-AJAX": {
+		"prefix": "v-ajax-set-grd",
 		"body": [
 		  "/*---------------------------------------------",
 		  "-- ● ibSheet$1 : 저장",
@@ -169,11 +258,11 @@
 		  "    gfnSetGrdData(param);",
 		  "},"
 		],
-		"description": "그리드 저장"
+		"description": "그리드 저장 공통함수를 추가합니다."
 	  },
 
-	  "그리드 조회, 저장": {
-		"prefix": "v-ajaxSheet",
+	  "조회/저장-그리드-AJAX": {
+		"prefix": "v-ajax-getSet-grd",
 		"body": [
 			"/*---------------------------------------------",
 			"-- ● ibSheet$1 : 조회",
@@ -202,11 +291,11 @@
 			"    gfnSetGrdData(param);",
 			"},"
 		],
-		"description": "그리드 조회, 저장"
+		"description": "그리드 조회/저장 공통함수를 추가합니다."
 	  },
 
-	  "폼 조회": {
-		"prefix": "v-getForm",
+	  "조회-폼-AJAX": {
+		"prefix": "v-ajax-get-frm",
 		"body": [
 		  "/*---------------------------------------------",
 		  "-- ● ${1:폼 id} : ${2:폼 이름} 조회",
@@ -228,11 +317,11 @@
 		  "    console.log(rtnData);",
 		  "},"
 		],
-		"description": "폼 조회"
+		"description": "폼 조회 공통함수를 추가합니다."
 	  },
 
-	  "폼 저장": {
-		"prefix": "v-setForm",
+	  "저장-폼-AJAX": {
+		"prefix": "v-ajax-set-frm",
 		"body": [
 		  "/*---------------------------------------------",
 		  "-- ● ${1:폼 id} : ${2:폼 이름} 저장",
@@ -255,11 +344,24 @@
 		  "    }",
 		  "},"
 		],
-		"description": "폼 저장"
+		"description": "폼 저장 공통함수를 추가합니다."
 	  },
 
-	  "조회 전 변경, 필수 항목을 체크합니다.": {
-		"prefix": "v-checkSearch",
+
+
+
+
+
+
+
+
+
+
+
+
+
+	  "조회 검증-UTIL": {
+		"prefix": "v-util-schChk",
 		"body": [
 		  "/*-----------------------",
 		  "-- ● [조회]",
@@ -275,60 +377,7 @@
 		  "},"
 		],
 		"description": "조회 전 변경, 필수 항목을 체크합니다."
-	  },
-
-	  "그리드에 업로드 팝업을 바인딩합니다.": {
-		"prefix": "v-gridUploadPopup",
-		"body": [
-		  "let param = {",
-		  "    type         : 'Grid',",
-		  "    sheet        : ${1:시트 객체},",
-		  "    callbackFunc : vpCallback.${2:팝업 close 콜백},",
-		  "    atflGrpCode  : ${3:첨부파일 그룹코드},",
-		  "    pkCode       : {",
-		  "        PARM_1: evtParam.row.SITE_CD,",
-		  "        PARM_2: evtParam.row.FILE_SEQ,",
-		  "    },",
-		  "    dextOptions : {",
-		  "        height : 400,",
-		  "        width  : 800,",
-		  "        rule   : '',",
-		  "        ext    : '',",
-		  "        count  : ${4:최대 첨부파일 갯수},",
-		  "    },",
-		  "    auth        : \"\\${EDIT_YN}\" ? true : false,",
-		  "    autoClose   : ${5|true,false|},",
-		  "};",
-		  "addonDextUploader(param);"
-		],
-		"description": "그리드에 업로드 팝업을 바인딩합니다."
-	  },
-
-	  "폼에 업로드 팝업을 바인딩합니다.": {
-		"prefix": "v-formUploadPopup",
-		"body": [
-		  "let param = {",
-		  "    type         : 'Form',",
-		  "    formId       : '${1:폼 id}',",
-		  "    callbackFunc : vpCallback.${2:팝업 close 콜백},",
-		  "    atflGrpCode  : ${3:첨부파일 그룹코드},",
-		  "    pkCode       : {",
-		  "        PARM_1: $('#SITE_CD').val(),",
-		  "        PARM_2: $('#FILE_SEQ').val(),",
-		  "    },",
-		  "    dextOptions : {",
-		  "        height : 400,",
-		  "        width  : 800,",
-		  "        rule   : '',",
-		  "        ext    : '',",
-		  "        count  : ${4:최대 첨부파일 갯수},",
-		  "    },",
-		  "    auth        : \"\\${EDIT_YN}\" ? true : false,",
-		  "    autoClose   : ${5|true,false|},",
-		  "};",
-		  "addonDextUploader(param);"
-		],
-		"description": "폼에 업로드 팝업을 바인딩합니다."
 	  }
+
 	  
 }
