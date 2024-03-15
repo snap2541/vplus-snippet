@@ -1,0 +1,268 @@
+{
+
+	/* 
+	 * [ get/setGrd :: ggr/sgr ] : grid 조회/저장
+	 * contoller-view
+	 * getGrd-contoller   
+	 * setGrd-contoller
+	 * getGrd-service
+     * setGrd-service
+     * getGrd-serviceImpl
+     * setGrd-serviceImpl
+	 * getGrd-repository
+	 * setGrd-repository
+	 * getGrd-xml
+	 * setGrd-xml
+	 */
+	//  [ 컨트롤러 ] ----------------------------------------------------------------------------------
+	"화면이동-컨트롤러": {
+		"prefix": "v-contoller-view",
+		"body": [
+		  "/**",
+		  " * ${0:화면명}",
+		  " * @param request",
+		  " * @param response",
+		  " * @param url",
+		  " * @param model",
+		  " * @param acct",
+		  " * @return",
+		  " * @throws Exception",
+		  " */",
+		  "@PostMapping(value = \"/${1:메소드명}\")",
+		  "public String view_${1/(^.)/${1:/upcase}/}(HttpServletRequest request, HttpServletResponse response, String url,Model model, @AuthenticationPrincipal AccountVO acct) throws Exception {",
+		  "   return url;",
+		  "}"
+		],
+		"description": "화면이동"
+	},
+	"grid:type-조회-컨트롤러": {
+		"prefix": "v-contoller-get-Grd",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " * @param parm",
+		  " * @return",
+		  " * @throws Exception",
+		  " */",
+		  "@PostMapping(value = \"/getGrd_${1:메소드명}\", produces=\"application/json; charset=UTF-8\")",
+		  "@ResponseBody",
+		  "public Object getGrd_${1:메소드명}(@RequestParam Map<String,Object> parm) throws Exception {",
+		  "    return svc${2}.get_${1:메소드명}(parm);",
+		  "}"
+		],
+		"description": "조회 - 그리드 타입"
+	},
+	"form:type-조회-컨트롤러": {
+		"prefix": "v-contoller-get-Frm",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " * @param parm",
+		  " * @return",
+		  " * @throws Exception",
+		  " */",
+		  "@PostMapping(value = \"/getFrm_${1:메소드명}\", produces=\"application/json; charset=UTF-8\")",
+		  "@ResponseBody",
+		  "public Object getFrm_${1:메소드명}(@RequestParam Map<String,Object> parm) throws Exception {",
+		  "    return svc${2}.get_${1:메소드명}(parm);",
+		  "}"
+		],
+		"description": "조회 - 폼 타입"
+	},
+	"grid:type-저장-컨트롤러": {
+		"prefix": "v-contoller-set-Grd",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " * @param request",
+		  " * @param parm",
+		  " * @return",
+		  " * @throws Exception",
+		  " */",
+		  "@PostMapping(value = \"/setGrd_${1:메소드명}\", produces=\"application/json;  charset=UTF-8\", method = { RequestMethod.POST })",
+		  "@ResponseBody",
+		  "public String setGrd_${1:메소드명}(HttpServletRequest request, @RequestParam Map<String,Object> parm) throws Exception {",
+		  "    List<Map<String,Object>> shtList = getSheetData(request, parm);",
+		  "    svc${2}.set_${1:메소드명}(shtList);",
+		  "    return constGrdSucc;",
+		  "}"
+		],
+		"description": "조회 - 그리드 타입"
+	},
+	"form:type-저장-컨트롤러": {
+		"prefix": "v-contoller-set-Frm",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " * @param request",
+		  " * @param parm",
+		  " * @return",
+		  " * @throws Exception",
+		  " */",
+		  "@PostMapping(value = \"/setFrm_${1:메소드명}\", produces=\"application/json;  charset=UTF-8\", method = { RequestMethod.POST })",
+		  "@ResponseBody",
+		  "public String setFrm_${1:메소드명}(HttpServletRequest request,@RequestParam Map<String,Object> parm) throws Exception {",
+		  "    svc${2}.set_${1:메소드명}(parm);",
+		  "    return constFrmSucc;",
+		  "}"
+		],
+		"description": "조회 - 폼 타입"
+	},
+	//  [ 서비스 ] -------------------------------------------------------------------------------------
+	"list:return - 조회 - 서비스": {
+		"prefix": "v-service-get-list",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " * @param parm",
+		  " * @return",
+		  " * @throws Exception",
+		  " */",
+		  "List<Map<String,Object>> get_${1:메소드명}(Map<String,Object> parm) throws Exception;"
+		],
+		"description": "조회 - 리스트 타입"
+	},
+	"map:return - 조회 - 서비스": {
+		"prefix": "v-service-get-map",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " * @param parm",
+		  " * @return",
+		  " * @throws Exception",
+		  " */",
+		  "Map<String, Object> get_${1:메소드명}(Map<String,Object> parm) throws Exception;"
+		],
+		"description": "조회 - 맵 타입"
+	},
+	"list:parm - 저장 - 서비스": {
+		"prefix": "v-service-set-list",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " * @param list",
+		  " * @throws Exception",
+		  " */",
+		  "void set_${1:메소드명}(List<Map<String,Object>> list) throws Exception;"
+		],
+		"description": "저장 - 리스트 타입"
+	},
+	"list-map:parm - 저장 - 서비스": {
+		"prefix": "v-service-set-list-map",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " * @param list",
+		  " * @param parm",
+		  " * @throws Exception",
+		  " */",
+		  "void set_${1:메소드명}(List<Map<String,Object>> list, Map<String,Object> parm) throws Exception;"
+		],
+		"description": "저장 - 리스트 타입"
+	},
+	"map:parm - 저장 - 서비스": {
+		"prefix": "v-service-set-map",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " * @param parm",
+		  " * @throws Exception",
+		  " */",
+		  "void set_${1:메소드명}(Map<String,Object> parm) throws Exception;"
+		],
+		"description": "저장 - 맵 타입"
+	},
+	//  [ 서비스구현 ] ----------------------------------------------------------------------------------
+	"list:return - 조회 - 서비스-impl": {
+		"prefix": "v-serviceImpl-get-list",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " */",
+		  "@Override",
+		  "@SuppressWarnings(\"unchecked\")",
+		  "public List<Map<String,Object>> get_${1:메소드명}(Map<String,Object> parm) throws Exception{",
+		  "    rps${2}.get_${1:메소드명}(parm);",
+		  "    return (List<Map<String, Object>>) parm.get(\"RTN_CURSOR\");",
+		  "}"
+		],
+		"description": "조회 - 리스트 타입"
+	},
+	"map:return - 조회 - 서비스-impl": {
+		"prefix": "v-serviceImpl-get-map",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " */",
+		  "@Override",
+		  "@SuppressWarnings(\"unchecked\")",
+		  "public Map<String,Object> get_${1:메소드명}(Map<String,Object> parm) throws Exception{",
+		  "    rps${2}.get_${1:메소드명}(parm);",
+		  "    Map<String, Object> rstList = ((Map<String, Object>) parm.get(\"RTN_CURSOR\"));",
+		  "    return rstList.size() > 0 ? rstList.get(0) : null;",
+		  "}"
+		],
+		"description": "조회 - 리스트 타입"
+	},
+	"list:parm - 저장 - 서비스-impl": {
+		"prefix": "v-serviceImpl-set-list",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " */",
+		  "@Override",
+		  "@Transactional(propagation = Propagation.REQUIRED, rollbackFor={Exception.class})",
+		  "public void set_${1:메소드명}(List<Map<String,Object>> list) throws Exception {",
+		  "    for(int i=0;i<list.size();i++){",
+		  "        rps${2}.set_${1:메소드명}(list.get(i));",
+		  "    }",
+		  "}"
+		],
+		"description": "조회 - 리스트 타입"
+	},
+	//  [ 레파지토리 ] ----------------------------------------------------------------------------------
+	"procedure - 조회 - 레파지토리": {
+		"prefix": "v-repository-get-void",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " * @param parm",
+		  " */",
+		  "void get_${1:메소드명}(Map<String,Object> parm);"
+		],
+		"description": "조회 - list"
+	},
+	"(수정중)query - 조회 - 레파지토리": {
+		"prefix": "v-repository-get-list",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " * @param parm",
+		  " */",
+		  "void get_${1:메소드명}(Map<String,Object> parm);"
+		],
+		"description": "조회 - list"
+	},
+	"map - 저장 - 레파지토리": {
+		"prefix": "v-repository-set-map",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " * @param parm",
+		  " */",
+		  "void set_${1:메소드명}(Map<String,Object> parm);"
+		],
+		"description": "저장 - map"
+	},
+	"(수정중)list - 저장 - 레파지토리": {
+		"prefix": "v-repository-set-list",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " * @param parm",
+		  " */",
+		  "void set_${1:메소드명}(Map<String,Object> parm);"
+		],
+		"description": "저장 - map"
+	}
+}

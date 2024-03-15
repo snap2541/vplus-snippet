@@ -1,0 +1,83 @@
+{
+
+	/* 
+	 * [ get/setGrd :: ggr/sgr ] : 그리드 조회/저장
+	 * v-sessin-info
+	 * v-getGrd-xml-procedure
+	 * v-getGrd-xml-query
+	 * v-setGrd-xml-procedure
+	 * v-setGrd-xml-query
+	 */
+	"세션정보": {
+		"prefix": "v-sessin-info",
+		"body": [
+		  ",#{WRK_ID}   -- 아이디",
+		  ",#{WRK_CORP} -- 법인코드",
+		  ",#{WRK_DEPT} -- 부서코드",
+		],
+		"description": "조회 - 그리드"
+	},
+	"procedure - 조회": {
+		"prefix": "v-get-procedure",
+		"body": [
+		  "<!-- ${0:메소드설명} -->",
+		  "<select id=\"get_${1:메소드명}\" statementType=\"CALLABLE\" resultType=\"map\">",
+		  "    { CALL ${2:프로시저명}(",
+		  "           #{WRK_TP}   -- 작업유형",
+		  "          ,#{WRK_ID}   -- 아이디",
+		  "          ,#{WRK_CORP} -- 법인코드",
+		  "          ,#{WRK_DEPT} -- 부서코드",
+		  "          ,#{RTN_CURSOR ,jdbcType=CURSOR ,javaType=ResultSet ,resultMap=HashMapResult ,mode=OUT}",
+		  "    )}",
+		  "</select>"
+		],
+		"description": "조회 - 그리드"
+	},
+	"query - 조회": {
+		"prefix": "v-get-query",
+		"body": [
+		  "<!-- ${0:메소드설명} -->",
+		  "<select id=\"get_${1:메소드명}\" resultType=\"map\">",
+		  "    SELECT *",
+		  "      FROM DUAL",
+		  "</select>"
+		],
+		"description": "조회 - 그리드"
+	},
+	"procedure - 저장": {
+		"prefix": "v-set-procedure",
+		"body": [
+		  "<!-- ${0:메소드설명} -->",
+		  "<insert id=\"set_${1:메소드명}\" statementType=\"CALLABLE\">",
+		  "     { CALL ${2:프로시저명}(",
+		  "            #{WRK_TP}   -- 작업유형",
+		  "           ,#{WRK_ID}   -- 아이디",
+		  "           ,#{WRK_CORP} -- 법인코드",
+		  "           ,#{WRK_DEPT} -- 부서코드",
+		  "    )}",
+		  "</insert>"
+		],
+		"description": "그리드조회"
+	},
+	"query 저장": {
+		"prefix": "v-set-query",
+		"body": [
+		  "<!-- ${0:메소드설명} -->",
+		  "<insert id=\"${1:메소드명}\" parameterType=\"map\">",
+		  "    INSERT INTO 테이블 ( 컬럼 ) ",
+		  "                VALUE ( #{parm1} )",
+		  "</insert>",
+		  "<update id=\"${1:메소드명}\" parameterType=\"map\">",
+		  "    UPDATE 테이블",
+		  "       SET 컬럼 = #{parm1}",
+		  "     WHERE 컬럼 = #{parm2}",
+		  "</update>",
+		  "<delete id=\"${1:메소드명}\" parameterType=\"map\">",
+		  "    DELETE",
+		  "       SET 테이블",
+		  "     WHERE 컬럼 = #{parm1}",
+		  "</delete>"
+		],
+		"description": "그리드조회"
+	}
+}
