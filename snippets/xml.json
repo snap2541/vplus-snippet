@@ -1,19 +1,10 @@
 {
-
-	/* 
-	 * [ get/setGrd :: ggr/sgr ] : 그리드 조회/저장
-	 * v-sessin-info
-	 * v-getGrd-xml-procedure
-	 * v-getGrd-xml-query
-	 * v-setGrd-xml-procedure
-	 * v-setGrd-xml-query
-	 */
 	"세션정보": {
 		"prefix": "v-sessin-info",
 		"body": [
 		  ",#{WRK_ID}   -- 아이디",
 		  ",#{WRK_CORP} -- 법인코드",
-		  ",#{WRK_DEPT} -- 부서코드",
+		  ",#{WRK_DEPT} -- 부서코드"
 		],
 		"description": "조회 - 그리드"
 	},

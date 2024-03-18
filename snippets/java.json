@@ -1,22 +1,6 @@
 {
-
-	/* 
-	 * [ get/setGrd :: ggr/sgr ] : grid 조회/저장
-	 * contoller-view
-	 * getGrd-contoller   
-	 * setGrd-contoller
-	 * getGrd-service
-     * setGrd-service
-     * getGrd-serviceImpl
-     * setGrd-serviceImpl
-	 * getGrd-repository
-	 * setGrd-repository
-	 * getGrd-xml
-	 * setGrd-xml
-	 */
-	//  [ 컨트롤러 ] ----------------------------------------------------------------------------------
-	"화면이동-컨트롤러": {
-		"prefix": "v-contoller-view",
+	"화면이동 - 컨트롤러": {
+		"prefix": "v-con-View",
 		"body": [
 		  "/**",
 		  " * ${0:화면명}",
@@ -35,8 +19,8 @@
 		],
 		"description": "화면이동"
 	},
-	"grid:type-조회-컨트롤러": {
-		"prefix": "v-contoller-get-Grd",
+	"grid:type - 조회 - 컨트롤러": {
+		"prefix": "v-con-Get-Grd",
 		"body": [
 		  "/**",
 		  " * ${0:메소드설명}",
@@ -52,8 +36,8 @@
 		],
 		"description": "조회 - 그리드 타입"
 	},
-	"form:type-조회-컨트롤러": {
-		"prefix": "v-contoller-get-Frm",
+	"form:type - 조회 - 컨트롤러": {
+		"prefix": "v-con-Get-Frm",
 		"body": [
 		  "/**",
 		  " * ${0:메소드설명}",
@@ -69,8 +53,8 @@
 		],
 		"description": "조회 - 폼 타입"
 	},
-	"grid:type-저장-컨트롤러": {
-		"prefix": "v-contoller-set-Grd",
+	"grid:type - 저장 - 컨트롤러": {
+		"prefix": "v-con-Set-Grd",
 		"body": [
 		  "/**",
 		  " * ${0:메소드설명}",
@@ -89,8 +73,8 @@
 		],
 		"description": "조회 - 그리드 타입"
 	},
-	"form:type-저장-컨트롤러": {
-		"prefix": "v-contoller-set-Frm",
+	"form:type - 저장 - 컨트롤러": {
+		"prefix": "v-con-Set-Frm",
 		"body": [
 		  "/**",
 		  " * ${0:메소드설명}",
@@ -108,9 +92,8 @@
 		],
 		"description": "조회 - 폼 타입"
 	},
-	//  [ 서비스 ] -------------------------------------------------------------------------------------
 	"list:return - 조회 - 서비스": {
-		"prefix": "v-service-get-list",
+		"prefix": "v-svc-Get-list",
 		"body": [
 		  "/**",
 		  " * ${0:메소드설명}",
@@ -123,7 +106,7 @@
 		"description": "조회 - 리스트 타입"
 	},
 	"map:return - 조회 - 서비스": {
-		"prefix": "v-service-get-map",
+		"prefix": "v-svc-Get-map",
 		"body": [
 		  "/**",
 		  " * ${0:메소드설명}",
@@ -136,7 +119,7 @@
 		"description": "조회 - 맵 타입"
 	},
 	"list:parm - 저장 - 서비스": {
-		"prefix": "v-service-set-list",
+		"prefix": "v-svc-Set-list",
 		"body": [
 		  "/**",
 		  " * ${0:메소드설명}",
@@ -148,7 +131,7 @@
 		"description": "저장 - 리스트 타입"
 	},
 	"list-map:parm - 저장 - 서비스": {
-		"prefix": "v-service-set-list-map",
+		"prefix": "v-svc-Set-list-map",
 		"body": [
 		  "/**",
 		  " * ${0:메소드설명}",
@@ -161,7 +144,7 @@
 		"description": "저장 - 리스트 타입"
 	},
 	"map:parm - 저장 - 서비스": {
-		"prefix": "v-service-set-map",
+		"prefix": "v-svc-Set-map",
 		"body": [
 		  "/**",
 		  " * ${0:메소드설명}",
@@ -172,9 +155,8 @@
 		],
 		"description": "저장 - 맵 타입"
 	},
-	//  [ 서비스구현 ] ----------------------------------------------------------------------------------
 	"list:return - 조회 - 서비스-impl": {
-		"prefix": "v-serviceImpl-get-list",
+		"prefix": "v-imp-Get-list",
 		"body": [
 		  "/**",
 		  " * ${0:메소드설명}",
@@ -184,12 +166,13 @@
 		  "public List<Map<String,Object>> get_${1:메소드명}(Map<String,Object> parm) throws Exception{",
 		  "    rps${2}.get_${1:메소드명}(parm);",
 		  "    return (List<Map<String, Object>>) parm.get(\"RTN_CURSOR\");",
+		  "    return rps${2}.get_${1:메소드명}(parm);",
 		  "}"
 		],
 		"description": "조회 - 리스트 타입"
 	},
 	"map:return - 조회 - 서비스-impl": {
-		"prefix": "v-serviceImpl-get-map",
+		"prefix": "v-imp-Get-map",
 		"body": [
 		  "/**",
 		  " * ${0:메소드설명}",
@@ -200,12 +183,13 @@
 		  "    rps${2}.get_${1:메소드명}(parm);",
 		  "    Map<String, Object> rstList = ((Map<String, Object>) parm.get(\"RTN_CURSOR\"));",
 		  "    return rstList.size() > 0 ? rstList.get(0) : null;",
+		  "    return rps${2}.get_${1:메소드명}(parm);",
 		  "}"
 		],
 		"description": "조회 - 리스트 타입"
 	},
 	"list:parm - 저장 - 서비스-impl": {
-		"prefix": "v-serviceImpl-set-list",
+		"prefix": "v-imp-Set-list",
 		"body": [
 		  "/**",
 		  " * ${0:메소드설명}",
@@ -220,9 +204,39 @@
 		],
 		"description": "조회 - 리스트 타입"
 	},
-	//  [ 레파지토리 ] ----------------------------------------------------------------------------------
-	"procedure - 조회 - 레파지토리": {
-		"prefix": "v-repository-get-void",
+	"list-map:parm - 저장 - 서비스-impl": {
+		"prefix": "v-imp-Set-list-map",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " */",
+		  "@Override",
+		  "@Transactional(propagation = Propagation.REQUIRED, rollbackFor={Exception.class})",
+		  "public void set_${1:메소드명}(List<Map<String,Object>> list, Map<String, Object> parm) throws Exception {",
+		  "    for(int i=0;i<list.size();i++){",
+		  "        list.get(i).put(\"addParmKey\", parm.get(\"ParmKey\"));",
+		  "        rps${2}.set_${1:메소드명}(list.get(i));",
+		  "    }",
+		  "}"
+		],
+		"description": "조회 - 리스트 타입"
+	},
+	"map:parm - 저장 - 서비스-impl": {
+		"prefix": "v-imp-Set-map",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " */",
+		  "@Override",
+		  "@Transactional(propagation = Propagation.REQUIRED, rollbackFor={Exception.class})",
+		  "public void set_${1:메소드명}(Map<String, Object> parm) throws Exception {",
+		  "    rps${2}.set_${1:메소드명}(parm);",
+		  "}"
+		],
+		"description": "조회 - 리스트 타입"
+	},
+	"proc - 조회 - 레파지토리": {
+		"prefix": "v-rps-Get-void",
 		"body": [
 		  "/**",
 		  " * ${0:메소드설명}",
@@ -232,19 +246,30 @@
 		],
 		"description": "조회 - list"
 	},
-	"(수정중)query - 조회 - 레파지토리": {
-		"prefix": "v-repository-get-list",
+	"list:return - query - 조회 - 레파지토리": {
+		"prefix": "v-rps-Get-list",
 		"body": [
 		  "/**",
 		  " * ${0:메소드설명}",
 		  " * @param parm",
 		  " */",
-		  "void get_${1:메소드명}(Map<String,Object> parm);"
+		  "List<Map<String, Object>> get_${1:메소드명}(Map<String,Object> parm);"
+		],
+		"description": "조회 - list"
+	},
+	"map:return - query - 조회 - 레파지토리": {
+		"prefix": "v-rps-Get-map",
+		"body": [
+		  "/**",
+		  " * ${0:메소드설명}",
+		  " * @param parm",
+		  " */",
+		  "Map<String,Object> get_${1:메소드명}(Map<String,Object> parm);"
 		],
 		"description": "조회 - list"
 	},
 	"map - 저장 - 레파지토리": {
-		"prefix": "v-repository-set-map",
+		"prefix": "v-rps-Set-map",
 		"body": [
 		  "/**",
 		  " * ${0:메소드설명}",
@@ -254,15 +279,50 @@
 		],
 		"description": "저장 - map"
 	},
-	"(수정중)list - 저장 - 레파지토리": {
-		"prefix": "v-repository-set-list",
+	"저장 - 첨부파일 - 함수": {
+		"prefix": "v-fn-Atfl-Mng",
 		"body": [
-		  "/**",
-		  " * ${0:메소드설명}",
-		  " * @param parm",
-		  " */",
-		  "void set_${1:메소드명}(Map<String,Object> parm);"
+		  "// 1.ATFL INFO",
+		  "FileInfoVO fileVO  = new FileInfoVO();",
+		  "fileVO = (FileInfoVO) convertMapToObject(map,fileVO,\"dext5Upload1\");",
+		  "",
+		  "// 2.SAVE ATFL",
+		  "fileVO = svcfile.set_Atfl(fileVO);",
+		  "",
+          "// 3.INSERT ATFL GRP",
+          "if(!isEmpty(fileVO.getRTN_ATFL_GRP())){",
+          "    parm.put(\"ATFL_GRP\",fileVO.getRTN_ATFL_GRP());",
+          "}"
 		],
-		"description": "저장 - map"
+		"description": "저장 - 첨부파일 - 함수"
+	},
+	"주입 - 첨부파일 - 함수": {
+		"prefix": "v-fn-Atfl-Di",
+		"body": [
+		  "@Autowired",
+		  "private FileService svcfile;"
+		],
+		"description": "주입 - 첨부파일 - 함수"
+	},
+	"아이디 - 세션정보 - 함수": {
+		"prefix": "v-fn-Session-usrId",
+		"body": [
+		  "BaseUtils.ssInfo().getUSR_ID();"
+		],
+		"description": "아이디 - 세션정보 - 함수"
+	},
+	"부서코드 - 세션정보 - 함수": {
+		"prefix": "v-fn-Session-deptCd",
+		"body": [
+		  "BaseUtils.ssInfo()getDEPT_CD();"
+		],
+		"description": "아이디 - 세션정보 - 함수"
+	},
+	"법인코드 - 세션정보 - 함수": {
+		"prefix": "v-fn-Session-corpCd",
+		"body": [
+		  "BaseUtils.ssInfo()getCORP_CD();"
+		],
+		"description": "아이디 - 세션정보 - 함수"
 	}
 }
