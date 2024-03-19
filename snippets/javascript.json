@@ -363,9 +363,6 @@
 	  "조회 검증-UTIL": {
 		"prefix": "v-util-schChk",
 		"body": [
-		  "/*-----------------------",
-		  "-- ● [조회]",
-		  "-----------------------*/",
 		  "search: function() {",
 		  "    // MODIFIED CHECK",
 		  "    ${1|if (checkChangeData() && !confirm(comm_msg.WRN001)) { return; },if (!gfnCheckGridBeforeSearch(['ibSheet1'])) { return; }|}",
@@ -377,6 +374,34 @@
 		  "},"
 		],
 		"description": "조회 전 변경, 필수 항목을 체크합니다."
+	  },
+	  "변경 체크-UTIL": {
+		"prefix": "v-util-chgObjChk",
+		"body": [
+		  "function checkChangeObj() {",
+		  "    let arrChkObj = { ",
+		  "        ${1:'frmObj' : ['$2'],}",
+		  "        ${3:'shtObj' : ['$4'],}",
+		  "        ${5:'dextObj': ['$6'],}",
+		  "    };",
+		  "    return arrChkObj;",
+		  "}"
+		],
+		"description": "화면 내 객체들의 변경을 체크합니다."
+	  },
+	  "저장 검증-UTIL": {
+		"prefix": "v-util-saveChk",
+		"body": [
+		  "save: function() {",
+		  "    if(!checkChangeData()){",
+		  "        alert(comm_msg.ALR001);",
+		  "        return;",
+		  "    }",
+		  "",
+		  "    //vpPage.set_Sheet1();",
+		  "},"
+		],
+		"description": "저장 전 변경사항이 있는지 체크합니다."
 	  }
 
 	  

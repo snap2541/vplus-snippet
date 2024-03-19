@@ -2,7 +2,7 @@
   "name": "vplus-snippets",
   "displayName": "vplus snippets",
   "description": "",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "icon": "images/thumbnail.jpg",
   "engines": {
     "vscode": "^1.87.0"
