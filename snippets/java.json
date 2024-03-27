@@ -92,6 +92,7 @@
 		],
 		"description": "조회 - 폼 타입"
 	},
+
 	"list:return - 조회 - 서비스": {
 		"prefix": "v-svc-Get-list",
 		"body": [
@@ -155,6 +156,7 @@
 		],
 		"description": "저장 - 맵 타입"
 	},
+
 	"list:return - 조회 - 서비스-impl": {
 		"prefix": "v-imp-Get-list",
 		"body": [
@@ -162,11 +164,9 @@
 		  " * ${0:메소드설명}",
 		  " */",
 		  "@Override",
-		  "@SuppressWarnings(\"unchecked\")",
 		  "public List<Map<String,Object>> get_${1:메소드명}(Map<String,Object> parm) throws Exception{",
 		  "    rps${2}.get_${1:메소드명}(parm);",
-		  "    return (List<Map<String, Object>>) parm.get(\"RTN_CURSOR\");",
-		  "    return rps${2}.get_${1:메소드명}(parm);",
+		  "    return getListFromCursor(parm);",
 		  "}"
 		],
 		"description": "조회 - 리스트 타입"
@@ -178,12 +178,9 @@
 		  " * ${0:메소드설명}",
 		  " */",
 		  "@Override",
-		  "@SuppressWarnings(\"unchecked\")",
 		  "public Map<String,Object> get_${1:메소드명}(Map<String,Object> parm) throws Exception{",
 		  "    rps${2}.get_${1:메소드명}(parm);",
-		  "    Map<String, Object> rstList = ((Map<String, Object>) parm.get(\"RTN_CURSOR\"));",
-		  "    return rstList.size() > 0 ? rstList.get(0) : null;",
-		  "    return rps${2}.get_${1:메소드명}(parm);",
+		  "    return getMapObjFromCursor(parm);",
 		  "}"
 		],
 		"description": "조회 - 리스트 타입"
@@ -235,6 +232,7 @@
 		],
 		"description": "조회 - 리스트 타입"
 	},
+
 	"proc - 조회 - 레파지토리": {
 		"prefix": "v-rps-Get-void",
 		"body": [
@@ -279,6 +277,75 @@
 		],
 		"description": "저장 - map"
 	},
+
+	"HashMap 생성": {
+		"prefix": "v-fn-Hashmap",
+		"body": [
+			"Map<String,Object> parmMap = new HashMap<String, Object>();",
+			"parmMap.put(\"Key\", \"Value\");"
+		],
+		"description": "HashMap - 함수"
+	},
+	"메일발송": {
+		"prefix": "v-send-Mail",
+		"body": [
+		  "Autowired",
+		  "private MailSender mSender;",
+		  "",
+		  "",
+		  "MailSenderVO mVo = new MailSenderVO();",
+		  "",
+		  "mVo.setSubject(\"${1:제목}\");",
+		  "mVo.setText(\"${2:내용}\");",
+		  "mVo.setFrom(\"test@gmail.com\");",
+		  "mVo.addRcvTo(\"test@gmail.com\");",
+		  "mVo.addRcvCc(\"test@naver.com\");",
+		  "mVo.addRcvBcc(\"test@naver.com\");",
+		  "mVo.addRcvBcc(\"test@naver.com\");",
+		  "mSender.sendMail(mVo);"
+		],
+		"description": "메일발송"
+	},
+	"문자발송": {
+		"prefix": "v-send-Sms",
+		"body": [
+		  "Autowired",
+		  "private SmsSender sSender;",
+		  "",
+		  "SmsSenderVO mVo = new SmsSenderVO();",
+		  "",
+		  "mVo.addRecipient(\"01012345678\"); // 연속해서 추가가능",
+		  "mVo.addRecipient(\"01087654321\");",
+		  "",
+		  "mVo.setSubject(\"문자발송\");",
+		  "mVo.setContent(\"가나다라마\");",
+		  "mVo.setUrl(\"URL\");",
+		  "mVo.setDate(\"202202220101\");",
+		  "",
+		  "sSender.sendSms(mVo);"
+		],
+		"description": "문자발송"
+	},
+	"개인정보 - 로그": {
+		"prefix": "v-log-PrivateLog",
+		"body": [
+		  "@Autowired",
+		  "private SystemLogService svcSys;",
+		  "",
+		  "// 1. 로그정보",
+		  "SecLogVO vo = new SecLogVO();",
+		  "",
+		  "vo.setMNU_CD(String.valueOf(map.get(\"WRK_MNU\")));  // 메뉴코드",
+		  "vo.setWRK_TP(\"R\");                                 // 작업타입(R:조회,I:등록,U:수정)",
+		  "vo.setWRK_NM(\"${1:작업명칭}\");                     // 작업명칭",
+		  "vo.setXML_ID(\"${2:XmlId}\");                        // XML ID",
+		  "vo.setXML_PARM(map);                                 // 파라미터",
+		  "",
+		  "// 2. 로그저장",
+		  "svcSys.insertPrivCnctLog(vo);"
+		],
+		"description": "개인정보 - 로그"
+	},
 	"저장 - 첨부파일 - 함수": {
 		"prefix": "v-fn-Atfl-Mng",
 		"body": [
@@ -307,21 +374,21 @@
 	"아이디 - 세션정보 - 함수": {
 		"prefix": "v-fn-Session-usrId",
 		"body": [
-		  "BaseUtils.ssInfo().getUSR_ID();"
+		  "ssInfo().getUSR_ID();"
 		],
 		"description": "아이디 - 세션정보 - 함수"
 	},
 	"부서코드 - 세션정보 - 함수": {
 		"prefix": "v-fn-Session-deptCd",
 		"body": [
-		  "BaseUtils.ssInfo()getDEPT_CD();"
+		  "ssInfo().getDEPT_CD();"
 		],
 		"description": "아이디 - 세션정보 - 함수"
 	},
 	"법인코드 - 세션정보 - 함수": {
 		"prefix": "v-fn-Session-corpCd",
 		"body": [
-		  "BaseUtils.ssInfo()getCORP_CD();"
+		  "ssInfo().getCORP_CD();"
 		],
 		"description": "아이디 - 세션정보 - 함수"
 	}

@@ -1,12 +1,12 @@
 {
-	"세션정보": {
+	"session": {
 		"prefix": "v-sessin-info",
 		"body": [
 		  ",#{WRK_ID}   -- 아이디",
 		  ",#{WRK_CORP} -- 법인코드",
 		  ",#{WRK_DEPT} -- 부서코드"
 		],
-		"description": "조회 - 그리드"
+		"description": "세션정보"
 	},
 	"procedure - 조회": {
 		"prefix": "v-get-procedure",
@@ -22,7 +22,7 @@
 		  "    )}",
 		  "</select>"
 		],
-		"description": "조회 - 그리드"
+		"description": "프로시저 조회"
 	},
 	"query - 조회": {
 		"prefix": "v-get-query",
@@ -33,7 +33,7 @@
 		  "      FROM DUAL",
 		  "</select>"
 		],
-		"description": "조회 - 그리드"
+		"description": "쿼리 조회"
 	},
 	"procedure - 저장": {
 		"prefix": "v-set-procedure",
@@ -48,9 +48,9 @@
 		  "    )}",
 		  "</insert>"
 		],
-		"description": "그리드조회"
+		"description": "프로시저 저장"
 	},
-	"query 저장": {
+	"query - 저장": {
 		"prefix": "v-set-query",
 		"body": [
 		  "<!-- ${0:메소드설명} -->",
@@ -69,6 +69,37 @@
 		  "     WHERE 컬럼 = #{parm1}",
 		  "</delete>"
 		],
-		"description": "그리드조회"
+		"description": "쿼리 저장"
+	},
+	"resultMap": {
+		"prefix": "v-resultMap",
+		"body": [
+		  "<resultMap type=\"HashMap\" id=\"${1:메소드명}\" >",
+		  "    <result property=\"COL1\" column=\"COL1\"/>",
+		  "    <result property=\"COL2\" column=\"COL2\"/>",
+		  "    <result property=\"COL3\" column=\"COL3\"/>",
+		  "</resultMap> "
+		],
+		"description": "해시맵 생성"
+	},
+	"if - tag": {
+		"prefix": "v-tag-if",
+		"body": [
+			"<if test=\"parm != null and parm == 'div'.toString()\">",
+			"</if>"
+		],
+		"description": "TAG - IF"
+	},
+	"choose - tag": {
+		"prefix": "v-tag-choose",
+		"body": [
+			"<choose>",
+			"    <when test=\"parm == 'div'.toString()\">",
+			"    </when>",
+			"    <otherwise>",
+			"    </otherwise>",
+			"</choose>"
+		],
+		"description": "TAG - CHOOSE"
 	}
 }
