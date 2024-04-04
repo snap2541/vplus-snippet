@@ -232,7 +232,7 @@
 		  "            </div>",
 		  "        </div>",
 		  "    </div>",
-		  "</div>",
+		  "</div>"
 		],
 		"description": "vpbox를 활용한 기본탭을 생성합니다."
 	  },
