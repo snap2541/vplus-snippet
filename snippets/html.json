@@ -342,7 +342,7 @@
 	"체크박스-TAG": {
 		"prefix": "v-tag-checkbox",
 		"body": [
-		  "<tag:check oid=\"${1:체크박스 id}1|${1}2|${1}3\" optText=\"${2:옵션 텍스트}1|${2}2|${2}3\" optValue=\"${3:옵션 값}1|${3}2|${3}3\" value=\"${3}1\"/>"
+		  "<tag:check oid=\"${1:체크박스 id}1|${1}2\" optText=\"${2:옵션 텍스트}1|${2}2\" optValue=\"${3:옵션 값}1|${3}2\" value=\"${3}1\"/>"
 		],
 		"description": "checkbox jstl 구문을 생성합니다."
 	  },
@@ -357,7 +357,7 @@
 	"셀렉트-TAG": {
 		"prefix": "v-tag-select",
 		"body": [
-		  "<tag:select oid=\"${1:셀렉트박스 id}\" optText=\"${2:옵션 텍스트}1|${2}2|${2}3\" optValue=\"${3:옵션 값}1|${3}2|${3}3\" firstRow=\"${4|E,S,A,N,L|}\" ${5:cls=\"w-auto\"}/>"
+		  "<tag:select oid=\"${1:셀렉트박스 id}\" optText=\"${2:옵션 텍스트}1|${2}2\" optValue=\"${3:옵션 값}1|${3}2\" firstRow=\"${4|E,S,A,N,L|}\" ${5:cls=\"\"}/>"
 		],
 		"description": "selectbox jstl 구문을 생성합니다."
 	  },
